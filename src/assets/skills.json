@@ -1,0 +1,35 @@
+{
+  "Frontend": [
+    { "name": "HTML", "icon": "fab fa-html5", "color": "#E44D26" },
+    { "name": "CSS", "icon": "fab fa-css3-alt", "color": "#264DE4" },
+    { "name": "JavaScript", "icon": "fab fa-js", "color": "#F7DF1E" },
+    { "name": "React", "icon": "fab fa-react", "color": "#61DAFB" },
+    { "name": "SCSS", "icon": "fab fa-sass", "color": "#CC6699" },
+    { "name": "TailwindCSS", "icon": "fas fa-wind", "color": "#06B6D4" },
+    { "name": "TypeScript", "icon": "fas fa-file-code", "color": "#007ACC" },
+    { "name": "Framer Motion", "icon": "fas fa-expand-arrows-alt", "color": "#ff00f7" },
+    { "name": "Vite", "icon": "fas fa-rocket", "color": "#646cff" },
+    { "name": "React Native", "icon": "fab fa-react", "color": "#61DAFB" },
+    { "name": "Next.js", "icon": "fas fa-forward", "color": "#000000" },
+    { "name": "Styled Components", "icon": "fas fa-paint-brush", "color": "#DB7093" }
+  ],
+  "Backend": [
+    { "name": "MongoDB", "icon": "fab fa-envira", "color": "#4DB33D" },
+    { "name": "Node.js", "icon": "fab fa-node-js", "color": "#68A063" },
+    { "name": "Socket.io", "icon": "fas fa-bolt", "color": "#010101" }
+  ],
+  "Other": [
+    { "name": "VS Code", "icon": "fas fa-code", "color": "#007ACC" },
+    { "name": "Git", "icon": "fab fa-git", "color": "#F05032" },
+    { "name": "GitHub", "icon": "fab fa-github", "color": "#181717" },
+    { "name": "Ubuntu", "icon": "fab fa-ubuntu", "color": "#E95420" },
+    { "name": "Windows", "icon": "fab fa-windows", "color": "#00ADEF" },
+    { "name": "Netlify", "icon": "fas fa-cloud-upload-alt", "color": "#00C7B7" },
+    { "name": "Render", "icon": "fas fa-server", "color": "#FA005E" }
+  ],
+  "NextGoals": [
+    { "name": "Python", "icon": "fab fa-python", "color": "#306998" },
+    { "name": "Django", "icon": "fas fa-leaf", "color": "#092E20" },
+    { "name": "Basics AI", "icon": "fas fa-robot", "color": "#FF9900" }
+  ]
+}
