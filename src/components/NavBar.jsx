@@ -33,9 +33,9 @@ const Nav = styled.nav`
   z-index: 1000;
 
   @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -111,6 +111,9 @@ const Burger = styled.div`
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    z-index: 1001; /* Ensure it's above other elements */
   }
 `;
 
@@ -150,7 +153,7 @@ function NavBar() {
 
   return (
     <Nav>
-      <Burger onClick={toggleMenu} style={{ position: "absolute", right: "1rem" }}>
+      <Burger onClick={toggleMenu}>
         <Line $isOpen={isOpen} />
         <Line $isOpen={isOpen} />
         <Line $isOpen={isOpen} />
@@ -193,18 +196,18 @@ function NavBar() {
           </StyledLink>
         </Li>
         <Li
-          onMouseEnter={() => setHoveredIndex(5)}
+          onMouseEnter={() => setHoveredIndex(4)}
           onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 5}
+          $isHovered={hoveredIndex === 4}
         >
           <StyledLink to="/achievements" onClick={closeMenu}>
             Achievements
           </StyledLink>
         </Li>
         <Li
-          onMouseEnter={() => setHoveredIndex(4)}
+          onMouseEnter={() => setHoveredIndex(5)}
           onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 4}
+          $isHovered={hoveredIndex === 5}
         >
           <StyledLink to="/contact" onClick={closeMenu}>
             Contact
@@ -216,3 +219,4 @@ function NavBar() {
 }
 
 export default NavBar;
+
