@@ -1,0 +1,8 @@
+User-agent: *
+Disallow:
+
+# Block specific paths
+# Disallow: /path-to-block/
+
+# Allow specific paths
+# Allow: /path-to-allow/
