@@ -151,15 +151,8 @@ function MyWay() {
       <Section>
         <SectionTitle>Projekte und Meilensteine</SectionTitle>
 
-        <SectionTitle>Herausragende Projekte</SectionTitle>
-        <List>
-          <li>
-            <strong>Einfaches Spiel mit JavaScript:</strong> Ein unterhaltsames Projekt, das meine Fähigkeiten im Bereich der Spieleentwicklung demonstriert.
-          </li>
-          <li>
-            <strong>Komplexe Full-Stack-Website:</strong> Eine umfassende Webanwendung, die meine Kenntnisse im MERN-Stack zeigt.
-          </li>
-        </List>
+       
+       ,
 
         <SectionTitle>Erfolge und Anerkennungen</SectionTitle>
         <List>
