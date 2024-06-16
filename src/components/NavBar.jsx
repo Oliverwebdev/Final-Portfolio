@@ -14,6 +14,17 @@ const fadeIn = keyframes`
   }
 `;
 
+const rotateIn = keyframes`
+  from {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+`;
+
 const Nav = styled.nav`
   background-color: #333;
   padding: 1rem;
@@ -23,6 +34,8 @@ const Nav = styled.nav`
 
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
   }
 `;
 
@@ -52,6 +65,7 @@ const Ul = styled.ul`
 const Li = styled.li`
   margin: 0 1rem;
   position: relative;
+  animation: ${rotateIn} 0.5s ease-in-out;
 
   &:after {
     content: "";
@@ -136,7 +150,7 @@ function NavBar() {
 
   return (
     <Nav>
-      <Burger onClick={toggleMenu}>
+      <Burger onClick={toggleMenu} style={{ position: "absolute", right: "1rem" }}>
         <Line $isOpen={isOpen} />
         <Line $isOpen={isOpen} />
         <Line $isOpen={isOpen} />

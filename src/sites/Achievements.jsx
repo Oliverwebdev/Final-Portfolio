@@ -7,7 +7,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 const certificates = [
-  { id: 1, title: 'Zertifikat 1', description: 'Beschreibung des Zertifikats 1', date: '01.01.2022', pdf: '/Vorläufiges-Zertifikat.pdf' },
+  { id: 1, title: 'Zertifikat 1', description: 'Vorläufiges Zertifikat zum Web- und Softwareentwickler', date: '14.06.2024', pdf: '/Vorläufiges-Zertifikat.pdf' },
   // Füge hier weitere Zertifikate hinzu
 ];
 
@@ -90,7 +90,7 @@ function Achievements() {
 
   return (
     <Container>
-      <Title>Meine Zertifikate</Title>
+      <Title>Meine Achievements</Title>
       <Grid>
         {certificates.map((cert) => (
           <Card key={cert.id}>
