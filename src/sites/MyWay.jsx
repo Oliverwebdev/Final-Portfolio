@@ -1,5 +1,5 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const fadeIn = keyframes`
   from {
@@ -13,7 +13,7 @@ const fadeIn = keyframes`
 `;
 
 const Container = styled.div`
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0 auto;
   padding: 20px;
   max-width: 1080px;
@@ -120,69 +120,142 @@ const Link = styled.a`
 function MyWay() {
   return (
     <Container>
-      <Title>My Way</Title>
+      <Title>My Way: Ein Einblick in Mein Leben</Title>
 
       <Section>
-        <SectionTitle>Einführung</SectionTitle>
+        <SectionTitle>Über mich</SectionTitle>
         <Paragraph>
-          Mein Name ist Oliver Spörl, und das Motto "My Way" begleitet mich auf meinem beruflichen und persönlichen Weg als Webentwickler.
+          Hallo! Mein Name ist Oliver Spörl. Ich bin ein engagierter und
+          dynamischer MERN Stack Entwickler mit einer Leidenschaft für die
+          Entwicklung skalierbarer Full-Stack-Webanwendungen. Hier möchte ich
+          euch einen kleinen Einblick in meine Reise geben, die mich zu dem
+          gemacht hat, was ich heute bin.
         </Paragraph>
       </Section>
 
       <Section>
+        <SectionTitle>Persönliche Infos</SectionTitle>
+        <Address>
+          <p>
+            <strong>Adresse:</strong> Wendelsteinstr. 19, 84508 Burgkirchen,
+            Germany
+          </p>
+          <p>
+            <strong>Telefon:</strong> 015128064881
+          </p>
+          <p>
+            <strong>E-Mail:</strong>{" "}
+            <Link href="mailto:karl78850@gmail.com">karl78850@gmail.com</Link>
+          </p>
+          <p>
+            <strong>Geburtsdatum:</strong> 04.11.1995 in Eichstätt
+          </p>
+        </Address>
+      </Section>
+
+      <Section>
         <SectionTitle>Meine Reise</SectionTitle>
-        <Paragraph>
-          Im Juni 2023 begann ich mein Home-Schooling zum Webentwickler, und am 08. August 2024 werde ich meine Ausbildung offiziell abschließen.
-          Ab diesem Zeitpunkt suche ich eine Arbeitsstelle, in der ich meine Fähigkeiten weiter ausbauen kann. Programmieren hat mich in seinen Bann
-          gezogen, sei es ein einfaches Spiel mit JavaScript, eine Landing Page oder ein komplexes Programm mit Python. Für mich ist dies der ideale
-          Job, in dem ich mich ständig weiterentwickeln kann und fast täglich etwas Neues lerne.
-        </Paragraph>
+        <Section>
+          <SectionTitle>Frühe Karriere</SectionTitle>
+          <Paragraph>
+            Meine berufliche Laufbahn begann in einem ganz anderen Bereich. Nach
+            meiner Ausbildung zum Bäckereifachverkäufer bei Scherer Trostberg
+            (09.2011 - 05.2014) habe ich verschiedene Positionen eingenommen,
+            darunter Bäckereifachverkäufer bei Gerweck und Hotelfachmann bei
+            Familie Zordel. Diese Erfahrungen haben mir wichtige Fähigkeiten wie
+            Kundenservice, Teamarbeit und Ausdauer vermittelt.
+          </Paragraph>
+        </Section>
+        <Section>
+          <SectionTitle>Übergang zur Technologie</SectionTitle>
+          <Paragraph>
+            Mein Interesse an der Technologie wuchs stetig, und ich entschied
+            mich, neue Wege zu gehen. Im April 2017 begann ich als Callcenter
+            Agent bei den Stadtwerken Pforzheim und später als
+            Außendienstmitarbeiter bei der Telekom. Diese Positionen haben mein
+            Interesse an der Technik und Kommunikation weiter verstärkt.
+          </Paragraph>
+        </Section>
+        <Section>
+          <SectionTitle>Der Schritt zur Webentwicklung</SectionTitle>
+          <Paragraph>
+            Im Juni 2023 begann ich mein Home-Schooling zum Webentwickler an der
+            DCI. Dieser Schritt war der Beginn einer aufregenden Reise. Die
+            Faszination für Programmieren hat mich schnell in ihren Bann
+            gezogen. Von einfachen Spielen mit JavaScript über Landing Pages bis
+            hin zu komplexen Programmen mit Python – ich entdecke immer neue
+            Herausforderungen und Möglichkeiten.
+          </Paragraph>
+        </Section>
+        <Section>
+          <SectionTitle>Abschluss und Zukunftspläne</SectionTitle>
+          <Paragraph>
+            Am 08. August 2024 werde ich meine Ausbildung zum Webentwickler
+            offiziell abschließen. Ab diesem Zeitpunkt suche ich eine Stelle, in
+            der ich meine Fähigkeiten weiter ausbauen und anwenden kann. Mein
+            Ziel ist es, innovative Lösungen zu entwickeln, die das Leben
+            erleichtern und bereichern.
+          </Paragraph>
+        </Section>
       </Section>
 
       <Section>
         <SectionTitle>Philosophie und Werte</SectionTitle>
         <Paragraph>
-          Ich glaube fest daran, dass es mit genug Willen und noch mehr Spaß an der Arbeit keine Probleme, sondern nur Lösungsansätze gibt. Was anfangs
-          schwer wirken mag, wird durch Ausdauer und Leidenschaft zu einer erfüllenden Herausforderung. Ein Zitat, das mich besonders inspiriert, ist:
-          "Probleme sind nur verkleidete Möglichkeiten."
+          Ich glaube fest daran, dass mit genug Willen und Spaß an der Arbeit
+          keine Probleme, sondern nur Lösungsansätze existieren. Was anfangs
+          schwer wirken mag, wird durch Ausdauer und Leidenschaft zu einer
+          erfüllenden Herausforderung. Ein Zitat, das mich besonders inspiriert,
+          ist: "Probleme sind nur verkleidete Möglichkeiten."
         </Paragraph>
       </Section>
 
       <Section>
-        <SectionTitle>Projekte und Meilensteine</SectionTitle>
-
-       
-       ,
-
-        <SectionTitle>Erfolge und Anerkennungen</SectionTitle>
+        <SectionTitle>Meilensteine</SectionTitle>
         <List>
-          <li>Abgeschlossenes Home-Schooling-Programm zum Webentwickler (08.08.2024)</li>
+          <li>
+            Abgeschlossenes Home-Schooling-Programm zum Webentwickler
+            (08.08.2024)
+          </li>
         </List>
       </Section>
 
       <Section>
         <SectionTitle>Vision und Ziele</SectionTitle>
         <Paragraph>
-          Ich strebe danach, in der Webentwicklung weiter zu wachsen und immer neue Herausforderungen zu meistern. Meine langfristige Vision ist es,
-          innovative Lösungen zu entwickeln, die das Leben erleichtern und bereichern.
+          Meine Vision ist es, in der Webentwicklung weiter zu wachsen und immer
+          neue Herausforderungen zu meistern. Langfristig strebe ich danach,
+          innovative Lösungen zu entwickeln, die das Leben der Menschen
+          erleichtern und bereichern.
         </Paragraph>
       </Section>
 
       <Section>
         <SectionTitle>Persönliche Reflexion</SectionTitle>
-
-        <SectionTitle>Lektionen gelernt</SectionTitle>
-        <Paragraph>
-          Ich habe gelernt, dass kontinuierliches Lernen und die Bereitschaft, neue Herausforderungen anzunehmen, der Schlüssel zum Erfolg in der Webentwicklung sind.
-        </Paragraph>
-
-        <SectionTitle>Ratschläge</SectionTitle>
-        <Paragraph>
-          Für diejenigen, die ihren eigenen Weg finden möchten: Bleibt neugierig und verliert nie den Spaß an dem, was ihr tut.
-        </Paragraph>
+        <Section>
+          <SectionTitle>Lektionen gelernt</SectionTitle>
+          <Paragraph>
+            Kontinuierliches Lernen und die Bereitschaft, neue Herausforderungen
+            anzunehmen, sind der Schlüssel zum Erfolg in der Webentwicklung.
+          </Paragraph>
+        </Section>
+        <Section>
+          <SectionTitle>Ratschläge</SectionTitle>
+          <Paragraph>
+            Für diejenigen, die ihren eigenen Weg finden möchten: Bleibt
+            neugierig und verliert nie den Spaß an dem, was ihr tut.
+          </Paragraph>
+        </Section>
       </Section>
 
-     
+      <Section>
+        <SectionTitle>Abschluss</SectionTitle>
+        <Paragraph>
+          Ich hoffe, dieser Einblick in meine Reise hat euch gefallen. Wenn ihr
+          mehr über meine Arbeit erfahren möchtet oder Interesse an einer
+          Zusammenarbeit habt, zögert nicht, mich zu kontaktieren!
+        </Paragraph>
+      </Section>
     </Container>
   );
 }
