@@ -40,6 +40,27 @@ const glow = keyframes`
   }
 `;
 
+const slideIn = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const bounce = keyframes`
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -76,9 +97,9 @@ const Role = styled.h2`
   color: #007BFF;
   margin-top: 0.5rem;
   cursor: pointer;
-  animation: ${fadeIn} 2s ease-out;
+  animation: ${slideIn} 1s ease-out, ${bounce} 2s infinite;
   &:hover {
-    animation: ${glow} 1.5s infinite alternate;
+    animation: ${glow} 1.5s infinite alternate, ${bounce} 1s;
   }
 `;
 
@@ -104,6 +125,7 @@ const SocialLink = styled.a`
   transition: color 0.3s ease;
   &:hover {
     color: #007BFF;
+    animation: ${pulse} 1s;
   }
 `;
 
@@ -136,8 +158,6 @@ function Aboutme() {
           <FontAwesomeIcon icon={faTiktok} />
         </SocialLink>
 
-        
-
         <SocialLink href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
           <FontAwesomeIcon icon={faLinkedin} />
         </SocialLink>
@@ -149,11 +169,6 @@ function Aboutme() {
         <SocialLink href="https://www.tiktok.com/@gringenerator?_t=8hQxyz4bOW8&_r=1" target="_blank" aria-label="TikTok 2">
           <FontAwesomeIcon icon={faTiktok} />
         </SocialLink>
-
-        
-
-        
-
       </SocialLinks>
     </Container>
   );

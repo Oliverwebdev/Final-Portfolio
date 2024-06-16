@@ -120,140 +120,115 @@ const Link = styled.a`
 function MyWay() {
   return (
     <Container>
-      <Title>My Way: Ein Einblick in Mein Leben</Title>
+      <Title>My Way: An Insight into My Life</Title>
 
       <Section>
-        <SectionTitle>Über mich</SectionTitle>
+        <SectionTitle>About Me</SectionTitle>
         <Paragraph>
-          Hallo! Mein Name ist Oliver Spörl. Ich bin ein engagierter und
-          dynamischer MERN Stack Entwickler mit einer Leidenschaft für die
-          Entwicklung skalierbarer Full-Stack-Webanwendungen. Hier möchte ich
-          euch einen kleinen Einblick in meine Reise geben, die mich zu dem
-          gemacht hat, was ich heute bin.
+          Hello! My name is Oliver Spörl. I am a dedicated and dynamic MERN
+          Stack developer with a passion for developing scalable full-stack web
+          applications. Here, I want to give you a little insight into my
+          journey that has made me who I am today.
         </Paragraph>
       </Section>
 
       <Section>
-        <SectionTitle>Persönliche Infos</SectionTitle>
-        <Address>
-          <p>
-            <strong>Adresse:</strong> Wendelsteinstr. 19, 84508 Burgkirchen,
-            Germany
-          </p>
-          <p>
-            <strong>Telefon:</strong> 015128064881
-          </p>
-          <p>
-            <strong>E-Mail:</strong>{" "}
-            <Link href="mailto:karl78850@gmail.com">karl78850@gmail.com</Link>
-          </p>
-          <p>
-            <strong>Geburtsdatum:</strong> 04.11.1995 in Eichstätt
-          </p>
-        </Address>
-      </Section>
-
-      <Section>
-        <SectionTitle>Meine Reise</SectionTitle>
+        <SectionTitle>My Journey</SectionTitle>
         <Section>
-          <SectionTitle>Frühe Karriere</SectionTitle>
+          <SectionTitle>Early Career</SectionTitle>
           <Paragraph>
-            Meine berufliche Laufbahn begann in einem ganz anderen Bereich. Nach
-            meiner Ausbildung zum Bäckereifachverkäufer bei Scherer Trostberg
-            (09.2011 - 05.2014) habe ich verschiedene Positionen eingenommen,
-            darunter Bäckereifachverkäufer bei Gerweck und Hotelfachmann bei
-            Familie Zordel. Diese Erfahrungen haben mir wichtige Fähigkeiten wie
-            Kundenservice, Teamarbeit und Ausdauer vermittelt.
+            My professional career began in a completely different field. After
+            my training as a bakery sales assistant at Scherer Trostberg
+            (09.2011 - 05.2014), I held various positions, including bakery
+            sales assistant at Gerweck and hotel specialist with the Zordel
+            family. These experiences have provided me with essential skills
+            such as customer service, teamwork, and perseverance.
           </Paragraph>
         </Section>
         <Section>
-          <SectionTitle>Übergang zur Technologie</SectionTitle>
+          <SectionTitle>Transition to Technology</SectionTitle>
           <Paragraph>
-            Mein Interesse an der Technologie wuchs stetig, und ich entschied
-            mich, neue Wege zu gehen. Im April 2017 begann ich als Callcenter
-            Agent bei den Stadtwerken Pforzheim und später als
-            Außendienstmitarbeiter bei der Telekom. Diese Positionen haben mein
-            Interesse an der Technik und Kommunikation weiter verstärkt.
+            My interest in technology grew steadily, and I decided to take new
+            paths. In April 2017, I started as a call center agent at Stadtwerke
+            Pforzheim and later as a field service representative at Telekom.
+            These positions further enhanced my interest in technology and
+            communication.
           </Paragraph>
         </Section>
         <Section>
-          <SectionTitle>Der Schritt zur Webentwicklung</SectionTitle>
+          <SectionTitle>The Step into Web Development</SectionTitle>
           <Paragraph>
-            Im Juni 2023 begann ich mein Home-Schooling zum Webentwickler an der
-            DCI. Dieser Schritt war der Beginn einer aufregenden Reise. Die
-            Faszination für Programmieren hat mich schnell in ihren Bann
-            gezogen. Von einfachen Spielen mit JavaScript über Landing Pages bis
-            hin zu komplexen Programmen mit Python – ich entdecke immer neue
-            Herausforderungen und Möglichkeiten.
+            In June 2023, I began my home-schooling to become a web developer at
+            DCI. This step was the beginning of an exciting journey. The
+            fascination for programming quickly captivated me. From simple games
+            with JavaScript to landing pages to complex programs with Python – I
+            continually discover new challenges and opportunities.
           </Paragraph>
         </Section>
         <Section>
-          <SectionTitle>Abschluss und Zukunftspläne</SectionTitle>
+          <SectionTitle>Completion and Future Plans</SectionTitle>
           <Paragraph>
-            Am 08. August 2024 werde ich meine Ausbildung zum Webentwickler
-            offiziell abschließen. Ab diesem Zeitpunkt suche ich eine Stelle, in
-            der ich meine Fähigkeiten weiter ausbauen und anwenden kann. Mein
-            Ziel ist es, innovative Lösungen zu entwickeln, die das Leben
-            erleichtern und bereichern.
+            On August 8, 2024, I will officially complete my training as a web
+            developer. From that point on, I am looking for a position where I
+            can further develop and apply my skills. My goal is to develop
+            innovative solutions that make life easier and more enriching.
           </Paragraph>
         </Section>
       </Section>
 
       <Section>
-        <SectionTitle>Philosophie und Werte</SectionTitle>
+        <SectionTitle>Philosophy and Values</SectionTitle>
         <Paragraph>
-          Ich glaube fest daran, dass mit genug Willen und Spaß an der Arbeit
-          keine Probleme, sondern nur Lösungsansätze existieren. Was anfangs
-          schwer wirken mag, wird durch Ausdauer und Leidenschaft zu einer
-          erfüllenden Herausforderung. Ein Zitat, das mich besonders inspiriert,
-          ist: "Probleme sind nur verkleidete Möglichkeiten."
+          I firmly believe that with enough will and fun at work, there are no
+          problems, only solutions. What may seem difficult at first becomes a
+          fulfilling challenge through perseverance and passion. A quote that
+          particularly inspires me is: "Problems are only opportunities in
+          disguise."
         </Paragraph>
       </Section>
 
       <Section>
-        <SectionTitle>Meilensteine</SectionTitle>
+        <SectionTitle>Milestones</SectionTitle>
         <List>
           <li>
-            Abgeschlossenes Home-Schooling-Programm zum Webentwickler
-            (08.08.2024)
+            Completed home-schooling program for web developers (08.08.2024)
           </li>
         </List>
       </Section>
 
       <Section>
-        <SectionTitle>Vision und Ziele</SectionTitle>
+        <SectionTitle>Vision and Goals</SectionTitle>
         <Paragraph>
-          Meine Vision ist es, in der Webentwicklung weiter zu wachsen und immer
-          neue Herausforderungen zu meistern. Langfristig strebe ich danach,
-          innovative Lösungen zu entwickeln, die das Leben der Menschen
-          erleichtern und bereichern.
+          My vision is to continue growing in web development and to master new
+          challenges continuously. In the long term, I aim to develop innovative
+          solutions that make people's lives easier and more enriching.
         </Paragraph>
       </Section>
 
       <Section>
-        <SectionTitle>Persönliche Reflexion</SectionTitle>
+        <SectionTitle>Personal Reflection</SectionTitle>
         <Section>
-          <SectionTitle>Lektionen gelernt</SectionTitle>
+          <SectionTitle>Lessons Learned</SectionTitle>
           <Paragraph>
-            Kontinuierliches Lernen und die Bereitschaft, neue Herausforderungen
-            anzunehmen, sind der Schlüssel zum Erfolg in der Webentwicklung.
+            Continuous learning and the willingness to take on new challenges
+            are key to success in web development.
           </Paragraph>
         </Section>
         <Section>
-          <SectionTitle>Ratschläge</SectionTitle>
+          <SectionTitle>Advice</SectionTitle>
           <Paragraph>
-            Für diejenigen, die ihren eigenen Weg finden möchten: Bleibt
-            neugierig und verliert nie den Spaß an dem, was ihr tut.
+            For those looking to find their own path: Stay curious and never
+            lose the fun in what you do.
           </Paragraph>
         </Section>
       </Section>
 
       <Section>
-        <SectionTitle>Abschluss</SectionTitle>
+        <SectionTitle>Conclusion</SectionTitle>
         <Paragraph>
-          Ich hoffe, dieser Einblick in meine Reise hat euch gefallen. Wenn ihr
-          mehr über meine Arbeit erfahren möchtet oder Interesse an einer
-          Zusammenarbeit habt, zögert nicht, mich zu kontaktieren!
+          I hope you enjoyed this insight into my journey. If you want to learn
+          more about my work or are interested in collaboration, don't hesitate
+          to contact me!
         </Paragraph>
       </Section>
     </Container>
