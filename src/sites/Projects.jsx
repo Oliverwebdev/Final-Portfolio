@@ -22,6 +22,18 @@ const fadeIn = keyframes`
   }
 `;
 
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -92,7 +104,7 @@ const RepoCard = styled.div`
   ${(props) =>
     props.$isHovered &&
     css`
-      animation: ${hoverAnimation} 0.3s forwards;
+      animation: ${hoverAnimation} 0.3s forwards, ${pulse} 1s infinite;
     `}
 
   &:hover {
@@ -222,3 +234,4 @@ function Projects() {
 }
 
 export default Projects;
+
