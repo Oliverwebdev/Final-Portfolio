@@ -46,6 +46,7 @@ const Container = styled.div`
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   animation: ${fadeIn} 1s ease-in;
+  overflow-x: hidden;  // Prevent horizontal scrolling
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -115,6 +116,7 @@ const RepoCard = styled.div`
 
   @media (max-width: 768px) {
     max-height: none;
+    width: 100%; // Ensure full width on smaller screens
   }
 
   @media (max-width: 480px) {
@@ -234,4 +236,3 @@ function Projects() {
 }
 
 export default Projects;
-

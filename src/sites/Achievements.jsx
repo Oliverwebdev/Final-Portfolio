@@ -1,10 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Worker } from '@react-pdf-viewer/core';
-import { Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
-import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 const certificates = [
   { id: 1, title: 'Zertifikat 1', description: 'Vorläufiges Zertifikat zum Web- und Softwareentwickler', date: '14.06.2024', pdf: '/Vorläufiges-Zertifikat.pdf' },
@@ -76,18 +71,22 @@ const CardDate = styled.p`
   }
 `;
 
-const PdfContainer = styled.div`
-  height: 500px;
-  margin-top: 20px;
+const PdfLink = styled.a`
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #3b3b3b;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 
-  @media (max-width: 600px) {
-    height: 300px;
+  &:hover {
+    background-color: #555;
   }
 `;
 
 function Achievements() {
-  const defaultLayoutPluginInstance = defaultLayoutPlugin();
-
   return (
     <Container>
       <Title>Meine Achievements</Title>
@@ -97,11 +96,9 @@ function Achievements() {
             <CardTitle>{cert.title}</CardTitle>
             <CardDescription>{cert.description}</CardDescription>
             <CardDate>{cert.date}</CardDate>
-            <PdfContainer>
-              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
-                <Viewer fileUrl={cert.pdf} plugins={[defaultLayoutPluginInstance]} />
-              </Worker>
-            </PdfContainer>
+            <PdfLink href={cert.pdf} target="_blank" rel="noopener noreferrer">
+              PDF anzeigen
+            </PdfLink>
           </Card>
         ))}
       </Grid>
