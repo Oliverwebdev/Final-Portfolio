@@ -143,7 +143,8 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+  box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc,
+    0 0 40px #bb86fc;
   animation: ${buttonAnimation} 2s infinite ease-in-out;
   transition: transform 0.2s;
 
@@ -161,7 +162,9 @@ function MyWay() {
     <Container>
       <Title>An Insight into My Life</Title>
       <ButtonContainer>
-        <Button onClick={() => window.open('Lebenslauf.pdf', '_blank')}>My CV</Button>
+        <Button onClick={() => window.open("Lebenslauf.pdf", "_blank")}>
+          My CV
+        </Button>
       </ButtonContainer>
 
       <Section>
@@ -176,7 +179,7 @@ function MyWay() {
 
       <Section>
         <SectionTitle>My Journey</SectionTitle>
-        
+
         <Section>
           <SectionTitle>Early Career</SectionTitle>
           <Paragraph>
@@ -231,15 +234,6 @@ function MyWay() {
       </Section>
 
       <Section>
-        <SectionTitle>Milestones</SectionTitle>
-        <List>
-          <li>
-            Completed home-schooling program for web developers (08.08.2024)
-          </li>
-        </List>
-      </Section>
-
-      <Section>
         <SectionTitle>Vision and Goals</SectionTitle>
         <Paragraph>
           My vision is to continue growing in web development and to master new
@@ -274,8 +268,6 @@ function MyWay() {
           to contact me!
         </Paragraph>
       </Section>
-
-      
     </Container>
   );
 }
