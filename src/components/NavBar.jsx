@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
+import Image from '../assets/HeroImage.jpg'; // Importiere das Bild
 
 // Keyframes für Animationen
 const fadeIn = keyframes`
@@ -159,13 +160,14 @@ function NavBar() {
         <Line $isOpen={isOpen} />
       </Burger>
       <Ul $isOpen={isOpen}>
+        
         <Li
           onMouseEnter={() => setHoveredIndex(0)}
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 0}
         >
-          <StyledLink to="/about-me" onClick={closeMenu}>
-            About Me
+          <StyledLink to="/skilltree" onClick={closeMenu}>
+            Skill Tree
           </StyledLink>
         </Li>
         <Li
@@ -173,8 +175,8 @@ function NavBar() {
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 1}
         >
-          <StyledLink to="/skilltree" onClick={closeMenu}>
-            Skill Tree
+          <StyledLink to="/my-way" onClick={closeMenu}>
+            My Way
           </StyledLink>
         </Li>
         <Li
@@ -182,8 +184,8 @@ function NavBar() {
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 2}
         >
-          <StyledLink to="/my-way" onClick={closeMenu}>
-            My Way
+          <StyledLink to="/projects" onClick={closeMenu}>
+            Projects
           </StyledLink>
         </Li>
         <Li
@@ -191,8 +193,8 @@ function NavBar() {
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 3}
         >
-          <StyledLink to="/projects" onClick={closeMenu}>
-            Projects
+          <StyledLink to="/achievements" onClick={closeMenu}>
+            Achievements
           </StyledLink>
         </Li>
         <Li
@@ -200,8 +202,8 @@ function NavBar() {
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 4}
         >
-          <StyledLink to="/achievements" onClick={closeMenu}>
-            Achievements
+          <StyledLink to="/contact" onClick={closeMenu}>
+            Contact
           </StyledLink>
         </Li>
         <Li
@@ -209,8 +211,8 @@ function NavBar() {
           onMouseLeave={() => setHoveredIndex(null)}
           $isHovered={hoveredIndex === 5}
         >
-          <StyledLink to="/contact" onClick={closeMenu}>
-            Contact
+          <StyledLink to="/about-me" onClick={closeMenu}>
+            <img src={Image} alt="About Me" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
           </StyledLink>
         </Li>
       </Ul>
@@ -219,4 +221,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
