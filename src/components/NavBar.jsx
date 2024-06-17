@@ -176,7 +176,7 @@ function NavBar() {
           $isHovered={hoveredIndex === 1}
         >
           <StyledLink to="/my-way" onClick={closeMenu}>
-            My Way
+            My Journey
           </StyledLink>
         </Li>
         <Li

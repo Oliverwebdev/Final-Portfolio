@@ -159,7 +159,7 @@ const Button = styled.button`
 function MyWay() {
   return (
     <Container>
-      <Title>My Way: An Insight into My Life</Title>
+      <Title>An Insight into My Life</Title>
       <ButtonContainer>
         <Button onClick={() => window.open('Lebenslauf.pdf', '_blank')}>My CV</Button>
       </ButtonContainer>
