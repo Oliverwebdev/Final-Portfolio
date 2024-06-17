@@ -12,6 +12,18 @@ const fadeIn = keyframes`
   }
 `;
 
+const buttonAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+  }
+  50% {
+    box-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 30px #bb86fc, 0 0 50px #bb86fc;
+  }
+  100% {
+    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+  }
+`;
+
 const Container = styled.div`
   font-family: "Roboto", sans-serif;
   margin: 0 auto;
@@ -117,10 +129,40 @@ const Link = styled.a`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const Button = styled.button`
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #121212;
+  background: #bb86fc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+  animation: ${buttonAnimation} 2s infinite ease-in-out;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
+
 function MyWay() {
   return (
     <Container>
       <Title>My Way: An Insight into My Life</Title>
+      <ButtonContainer>
+        <Button onClick={() => window.open('Lebenslauf.pdf', '_blank')}>My CV</Button>
+      </ButtonContainer>
 
       <Section>
         <SectionTitle>About Me</SectionTitle>
@@ -134,6 +176,7 @@ function MyWay() {
 
       <Section>
         <SectionTitle>My Journey</SectionTitle>
+        
         <Section>
           <SectionTitle>Early Career</SectionTitle>
           <Paragraph>
@@ -231,6 +274,8 @@ function MyWay() {
           to contact me!
         </Paragraph>
       </Section>
+
+      
     </Container>
   );
 }
