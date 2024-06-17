@@ -39,14 +39,14 @@ const Container = styled.div`
   min-height: 100vh;
   margin: 0;
   padding: 2rem;
-  background-color: #1E1E1E;
+  background-color: #121212;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   animation: ${fadeIn} 1s ease-in;
-  overflow-x: hidden;  // Prevent horizontal scrolling
+  overflow-x: hidden;
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -59,10 +59,11 @@ const Container = styled.div`
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  color: #E0E0E0;
+  color: #00ffcc;
   text-align: center;
   margin-bottom: 2rem;
   font-family: 'Roboto', sans-serif;
+  text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
   animation: ${fadeIn} 1s ease-in;
 
   @media (max-width: 768px) {
@@ -90,10 +91,7 @@ const RepoGrid = styled.div`
 
 const RepoCard = styled.div`
   position: relative;
-  background-color: #2E2E2E;
-  background-image: url(${(props) => props.$bgImage});
-  background-size: cover;
-  background-position: center;
+  background-color: #1e1e1e;
   border: 1px solid #444;
   border-radius: 8px;
   padding: 1rem;
@@ -116,7 +114,7 @@ const RepoCard = styled.div`
 
   @media (max-width: 768px) {
     max-height: none;
-    width: 100%; // Ensure full width on smaller screens
+    
   }
 
   @media (max-width: 480px) {
@@ -126,7 +124,7 @@ const RepoCard = styled.div`
 
 const RepoName = styled.h3`
   font-size: 1.5rem;
-  color: #E0E0E0;
+  color: #00ccff;
   font-family: 'Roboto', sans-serif;
 
   @media (max-width: 768px) {
@@ -140,7 +138,7 @@ const RepoName = styled.h3`
 
 const RepoDescription = styled.p`
   font-size: 1rem;
-  color: #B0B0B0;
+  color: #b0b0b0;
   display: ${(props) => (props.$isHovered ? 'block' : 'none')};
   margin: 0;
   opacity: ${(props) => (props.$isHovered ? '1' : '0')};
@@ -157,7 +155,7 @@ const RepoDescription = styled.p`
 `;
 
 const RepoLink = styled.a`
-  color: #007BFF;
+  color: #00ccff;
   text-decoration: none;
   display: ${(props) => (props.$isHovered ? 'block' : 'none')};
   opacity: ${(props) => (props.$isHovered ? '1' : '0')};
@@ -218,7 +216,6 @@ function Projects() {
             onMouseEnter={() => setHoveredRepoId(repo.id)}
             onMouseLeave={() => setHoveredRepoId(null)}
             $isHovered={hoveredRepoId === repo.id}
-            $bgImage={`url_to_your_image_directory/${repo.name}.jpg`}
           >
             <RepoName>{repo.name}</RepoName>
             <RepoDescription $isHovered={hoveredRepoId === repo.id}>

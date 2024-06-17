@@ -1,25 +1,52 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const certificates = [
-  { id: 1, title: 'Zertifikat 1', description: 'Vorläufiges Zertifikat zum Web- und Softwareentwickler', date: '14.06.2024', pdf: '/Vorläufiges-Zertifikat.pdf' },
+  { id: 1, title: 'Achievements 1', description: 'Certificate as a web and software developer', date: '14.06.2024', pdf: '/Vorläufiges-Zertifikat.pdf' },
   // Füge hier weitere Zertifikate hinzu
 ];
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const hoverEffect = keyframes`
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+`;
+
 const Container = styled.div`
   padding: 20px;
-  background-color: #2c2c2c;
+  background-color: #121212;
   color: #fff;
   font-family: 'Arial', sans-serif;
+  animation: ${fadeIn} 1s ease-in-out;
 `;
 
 const Title = styled.h2`
   text-align: center;
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #00d4ff;
+  text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
 
   @media (max-width: 600px) {
-    font-size: 1.5em;
+    font-size: 2em;
   }
 `;
 
@@ -34,31 +61,35 @@ const Grid = styled.div`
 `;
 
 const Card = styled.div`
-  background: #1e1e1e;
+  background: linear-gradient(145deg, #1e1e1e, #2e2e2e);
   padding: 20px;
   border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: ${hoverEffect} 5s infinite;
+
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   }
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.5em;
+  font-size: 1.7em;
   margin-bottom: 10px;
+  color: #ff007f;
 
   @media (max-width: 600px) {
-    font-size: 1.2em;
+    font-size: 1.4em;
   }
 `;
 
 const CardDescription = styled.p`
-  font-size: 1em;
+  font-size: 1.1em;
   margin-bottom: 10px;
+  color: #d1d1d1;
 
   @media (max-width: 600px) {
-    font-size: 0.9em;
+    font-size: 1em;
   }
 `;
 
@@ -75,21 +106,22 @@ const PdfLink = styled.a`
   display: inline-block;
   margin-top: 10px;
   padding: 10px 20px;
-  background-color: #3b3b3b;
+  background-color: #333;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
     background-color: #555;
+    transform: scale(1.1);
   }
 `;
 
 function Achievements() {
   return (
     <Container>
-      <Title>Meine Achievements</Title>
+      <Title>My Achievements</Title>
       <Grid>
         {certificates.map((cert) => (
           <Card key={cert.id}>
@@ -97,7 +129,7 @@ function Achievements() {
             <CardDescription>{cert.description}</CardDescription>
             <CardDate>{cert.date}</CardDate>
             <PdfLink href={cert.pdf} target="_blank" rel="noopener noreferrer">
-              PDF anzeigen
+              show PDF
             </PdfLink>
           </Card>
         ))}

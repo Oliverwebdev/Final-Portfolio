@@ -27,7 +27,7 @@
     { "name": "Netlify", "icon": "fas fa-cloud-upload-alt", "color": "#00C7B7" },
     { "name": "Render", "icon": "fas fa-server", "color": "#FA005E" }
   ],
-  "NextGoals": [
+  "Next Goals": [
     { "name": "Python", "icon": "fab fa-python", "color": "#306998" },
     { "name": "Django", "icon": "fas fa-leaf", "color": "#092E20" },
     { "name": "Basics AI", "icon": "fas fa-robot", "color": "#FF9900" }
