@@ -158,7 +158,7 @@ function Aboutme() {
           <FontAwesomeIcon icon={faTiktok} />
         </SocialLink>
 
-        <SocialLink href="https://www.linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+        <SocialLink href="https://www.linkedin.com/in/oliver-sp%C3%B6rl-2586a52b3/" target="_blank" aria-label="LinkedIn">
           <FontAwesomeIcon icon={faLinkedin} />
         </SocialLink>
 
