@@ -8,6 +8,7 @@ import Contact from './sites/Contact';
 import NavBar from './components/NavBar';
 import SkillTree from './sites/SkillTree';
 import Achievements from './sites/Achievements';
+import Footer from './components/Footer';
 
 // Keyframe animation for gradient movement
 const gradientAnimation = keyframes`
@@ -81,6 +82,7 @@ function App() {
           <Route path="*" element={<Navigate to="/about-me" />} />
         </Routes>
       </Router>
+      <Footer/>
     </AppContainer>
   );
 }
