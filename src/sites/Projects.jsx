@@ -114,7 +114,6 @@ const RepoCard = styled.div`
 
   @media (max-width: 768px) {
     max-height: none;
-    
   }
 
   @media (max-width: 480px) {
@@ -154,28 +153,6 @@ const RepoDescription = styled.p`
   }
 `;
 
-const RepoLink = styled.a`
-  color: #00ccff;
-  text-decoration: none;
-  display: ${(props) => (props.$isHovered ? 'block' : 'none')};
-  opacity: ${(props) => (props.$isHovered ? '1' : '0')};
-  transition: opacity 0.3s ease-in;
-
-  @media (max-width: 768px) {
-    display: block;
-    margin-top: 1rem;
-    opacity: 1;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 0.875rem;
-  }
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 const Divider = styled.hr`
   border: 0;
   border-top: 1px solid #444;
@@ -206,6 +183,10 @@ function Projects() {
     fetchStarredRepos();
   }, []);
 
+  const handleCardClick = (url) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <Container>
       <Title>Starred Projects</Title>
@@ -216,14 +197,12 @@ function Projects() {
             onMouseEnter={() => setHoveredRepoId(repo.id)}
             onMouseLeave={() => setHoveredRepoId(null)}
             $isHovered={hoveredRepoId === repo.id}
+            onClick={() => handleCardClick(repo.html_url)}
           >
             <RepoName>{repo.name}</RepoName>
             <RepoDescription $isHovered={hoveredRepoId === repo.id}>
               {repo.description || 'No description available'}
             </RepoDescription>
-            <RepoLink href={repo.html_url} target="_blank" $isHovered={hoveredRepoId === repo.id}>
-              View on GitHub
-            </RepoLink>
             <Divider />
           </RepoCard>
         ))}
