@@ -173,7 +173,7 @@ function MyWay() {
           Hello! My name is Oliver Spörl. I am a dedicated and dynamic MERN
           Stack developer with a passion for developing scalable full-stack web
           applications. Here, I want to give you a little insight into my
-          journey that has made me who I am today.
+          journey that has made me the man I am today.
         </Paragraph>
       </Section>
 
