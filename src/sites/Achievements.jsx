@@ -1,8 +1,54 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { Worker, Viewer } from "@react-pdf-viewer/core";
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 
 const certificates = [
-  { id: 1, title: 'Achievements 1', description: 'Certificate as a web and software developer', date: '14.06.2024', pdf: '/Vorläufiges-Zertifikat.pdf' },
+  {
+    id: 1,
+    title: "Achievements 1",
+    description: "Certificate as a web and software developer",
+    date: "14.06.2024",
+    pdf: "/Vorläufiges-Zertifikat.pdf",
+  },
+  {
+    id: 1,
+    title: "Achievements 2",
+    description: "Introduction to Software Engineering",
+    date: "02.07.2024",
+    pdf: "/Coursera 6V7CLQ686LGP.pdf",
+  },
+  {
+    id: 1,
+    title: "Achievements 6",
+    description: "Introduction to Artificial Intelligence (AI)",
+    date: "03.07.2024",
+    pdf: "/Coursera X49UAMWZXK2Q.pdf",
+  },
+
+  {
+    id: 1,
+    title: "Achievements 3",
+    description: "Introduction to HTML, CSS, & JavaScript",
+    date: "05.07.2024",
+    pdf: "/Coursera KRYFFV2YQQJG.pdf",
+  },
+  {
+    id: 1,
+    title: "Achievements 4",
+    description: "Generative AI: Pormpt Engineering Basics",
+    date: "05.07.2024",
+    pdf: "/Coursera TBMWQKYS2UJD.pdf",
+  },
+  {
+    id: 1,
+    title: "Achievements 5",
+    description: "Generative AI: Introduction and Applications",
+    date: "05.07.2024",
+    pdf: "/Coursera U3W2BURF3WTF.pdf",
+  },
+
   // Füge hier weitere Zertifikate hinzu
 ];
 
@@ -34,7 +80,7 @@ const Container = styled.div`
   padding: 20px;
   background-color: #121212;
   color: #fff;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   animation: ${fadeIn} 1s ease-in-out;
 `;
 
@@ -102,23 +148,64 @@ const CardDate = styled.p`
   }
 `;
 
-const PdfLink = styled.a`
-  display: inline-block;
+const PdfPreview = styled.div`
   margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  height: 200px;
+  overflow: hidden;
+  cursor: pointer;
 
-  &:hover {
-    background-color: #555;
-    transform: scale(1.1);
+  canvas {
+    height: 100%;
+  }
+`;
+
+const Modal = styled.div`
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 60px;
+`;
+
+const ModalContent = styled.div`
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 1200px;
+`;
+
+const CloseButton = styled.span`
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+
+  &:hover,
+  &:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
   }
 `;
 
 function Achievements() {
+  const [selectedPdf, setSelectedPdf] = useState(null);
+
+  const openModal = (pdf) => {
+    setSelectedPdf(pdf);
+  };
+
+  const closeModal = () => {
+    setSelectedPdf(null);
+  };
+
   return (
     <Container>
       <Title>My Achievements</Title>
@@ -128,12 +215,28 @@ function Achievements() {
             <CardTitle>{cert.title}</CardTitle>
             <CardDescription>{cert.description}</CardDescription>
             <CardDate>{cert.date}</CardDate>
-            <PdfLink href={cert.pdf} target="_blank" rel="noopener noreferrer">
-              show PDF
-            </PdfLink>
+            <PdfPreview onClick={() => openModal(cert.pdf)}>
+              <Worker
+                workerUrl={`//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`}
+              >
+                <Viewer fileUrl={cert.pdf} />
+              </Worker>
+            </PdfPreview>
           </Card>
         ))}
       </Grid>
+      {selectedPdf && (
+        <Modal isOpen={!!selectedPdf}>
+          <ModalContent>
+            <CloseButton onClick={closeModal}>&times;</CloseButton>
+            <Worker
+              workerUrl={`//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`}
+            >
+              <Viewer fileUrl={selectedPdf} />
+            </Worker>
+          </ModalContent>
+        </Modal>
+      )}
     </Container>
   );
 }
