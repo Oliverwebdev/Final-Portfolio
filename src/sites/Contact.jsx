@@ -1,5 +1,11 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// EmailJS initialisieren
+emailjs.init("GufY9EpHnUDgkqjIy");
 
 // Keyframes für Animationen
 const fadeIn = keyframes`
@@ -160,6 +166,20 @@ const Button = styled.button`
 `;
 
 function Contact() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_0k2kjag', 'template_n8i038q', e.target)
+      .then((result) => {
+        console.log('SUCCESS!', result.text);
+        toast.success('Email sent successfully.');
+        e.target.reset();
+      }, (error) => {
+        console.log('FAILED...', error);
+        toast.error('Failed to send email.');
+      });
+  };
+
   return (
     <Container>
       <Heading>Looking for a skilled developer for your website?</Heading>
@@ -167,7 +187,7 @@ function Contact() {
       <Paragraph className="p-2">
         Reach out to me and together, we can make your vision a reality.
       </Paragraph>
-      <Form id="contact-form" action="process_form.php" method="POST">
+      <Form id="contact-form" onSubmit={handleSubmit}>
         <FormGroup>
           <Label htmlFor="name">Name:</Label>
           <Input type="text" id="name" name="name" required />
@@ -187,6 +207,17 @@ function Contact() {
         </FormGroup>
         <Button type="submit">Submit</Button>
       </Form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </Container>
   );
 }

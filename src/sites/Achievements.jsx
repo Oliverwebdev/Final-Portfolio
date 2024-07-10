@@ -21,7 +21,7 @@ const certificates = [
   },
   {
     id: 1,
-    title: "Achievements 6",
+    title: "Achievements 3",
     description: "Introduction to Artificial Intelligence (AI)",
     date: "03.07.2024",
     pdf: "/Coursera X49UAMWZXK2Q.pdf",
@@ -29,23 +29,23 @@ const certificates = [
 
   {
     id: 1,
-    title: "Achievements 3",
+    title: "Achievements 4",
     description: "Introduction to HTML, CSS, & JavaScript",
-    date: "05.07.2024",
+    date: "04.07.2024",
     pdf: "/Coursera KRYFFV2YQQJG.pdf",
   },
   {
     id: 1,
-    title: "Achievements 4",
+    title: "Achievements 5",
     description: "Generative AI: Pormpt Engineering Basics",
     date: "05.07.2024",
     pdf: "/Coursera TBMWQKYS2UJD.pdf",
   },
   {
     id: 1,
-    title: "Achievements 5",
+    title: "Achievements 6",
     description: "Generative AI: Introduction and Applications",
-    date: "05.07.2024",
+    date: "06.07.2024",
     pdf: "/Coursera U3W2BURF3WTF.pdf",
   },
 
@@ -99,7 +99,7 @@ const Title = styled.h2`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 40px;
 
   @media (max-width: 400px) {
     grid-template-columns: 1fr;
