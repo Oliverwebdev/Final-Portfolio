@@ -1,6 +1,7 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 
+// Keyframes for animations
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -12,263 +13,100 @@ const fadeIn = keyframes`
   }
 `;
 
-const buttonAnimation = keyframes`
+const pulse = keyframes`
   0% {
-    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+    transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 30px #bb86fc, 0 0 50px #bb86fc;
+    transform: scale(1.05);
   }
   100% {
-    box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc, 0 0 40px #bb86fc;
+    transform: scale(1);
   }
+`;
+
+// Wrapper for the container to control background size
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 20px;  // Ensure some space around the container
+  // background-color: #1e1e1e;  // Slightly lighter dark gray for the background
 `;
 
 const Container = styled.div`
-  font-family: "Roboto", sans-serif;
-  margin: 0 auto;
+  background-color: #2a2a2a;  // Darker gray for the container background
+  color: #f0f0f0;  // Light gray for text
   padding: 20px;
-  max-width: 1080px;
-  background: #121212;
-  color: #e0e0e0;
-  animation: ${fadeIn} 1s ease-out;
+  border-radius: 12px;  // Slightly rounded corners
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 80%;  // Full width with max limit for responsiveness
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+  animation: ${fadeIn} 1s ease-in-out;
 
-  @media (max-width: 768px) {
-    padding: 15px;
+  @media (min-width: 600px) {
+    max-width: 70%;
   }
 
-  @media (max-width: 390px) {
-    padding: 10px;
-  }
-`;
-
-const Title = styled.h1`
-  text-align: center;
-  color: #ffffff;
-  font-size: 2.5em;
-  border-bottom: 2px solid #bb86fc;
-  padding-bottom: 10px;
-  animation: ${fadeIn} 1.5s ease-out;
-
-  @media (max-width: 768px) {
-    font-size: 2em;
+  @media (min-width: 900px) {
+    max-width: 60%;
   }
 
-  @media (max-width: 390px) {
-    font-size: 1.5em;
-  }
-`;
-
-const Section = styled.section`
-  margin-bottom: 30px;
-  animation: ${fadeIn} 2s ease-out;
-`;
-
-const SectionTitle = styled.h2`
-  color: #bb86fc;
-  font-size: 1.75em;
-  border-bottom: 1px solid #e0e0e0;
-  padding-bottom: 5px;
-  animation: ${fadeIn} 2.5s ease-out;
-
-  @media (max-width: 768px) {
-    font-size: 1.5em;
-  }
-
-  @media (max-width: 390px) {
-    font-size: 1.25em;
+  @media (min-width: 1200px) {
+    max-width: 50%;
   }
 `;
 
 const Paragraph = styled.p`
-  line-height: 1.6;
-  margin: 15px 0;
-  animation: ${fadeIn} 3s ease-out;
-
-  @media (max-width: 768px) {
-    font-size: 0.95em;
+  margin-bottom: 20px;
+  font-size: 1.1em;  // Slightly smaller font size
+  line-height: 1.8;  // Increased line height for better readability
+  animation: ${fadeIn} 1s ease-in-out, ${pulse} 6s infinite;
+  
+  &:nth-child(2) {
+    animation-delay: 0.5s;
   }
 
-  @media (max-width: 390px) {
-    font-size: 0.85em;
-  }
-`;
-
-const List = styled.ul`
-  padding-left: 20px;
-  margin: 10px 0;
-  animation: ${fadeIn} 3.5s ease-out;
-
-  @media (max-width: 768px) {
-    font-size: 0.95em;
+  &:nth-child(3) {
+    animation-delay: 1s;
   }
 
-  @media (max-width: 390px) {
-    font-size: 0.85em;
+  &:nth-child(4) {
+    animation-delay: 1.5s;
   }
 
-  li {
-    margin-bottom: 10px;
+  &:nth-child(5) {
+    animation-delay: 2s;
   }
-`;
-
-const Address = styled.address`
-  font-style: normal;
-  margin: 15px 0;
-  animation: ${fadeIn} 4s ease-out;
-`;
-
-const Link = styled.a`
-  color: #bb86fc;
-  text-decoration: none;
-  margin-right: 10px;
-  animation: ${fadeIn} 4.5s ease-out;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
-
-const Button = styled.button`
-  padding: 15px 30px;
-  font-size: 1.2em;
-  color: #121212;
-  background: #bb86fc;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 0 5px #bb86fc, 0 0 10px #bb86fc, 0 0 20px #bb86fc,
-    0 0 40px #bb86fc;
-  animation: ${buttonAnimation} 2s infinite ease-in-out;
-  transition: transform 0.2s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  &:active {
-    transform: scale(0.9);
+  
+  @media (max-width: 600px) {
+    font-size: 1em;  // Adjust font size for smaller screens
+    margin-bottom: 15px;
   }
 `;
 
 function MyWay() {
   return (
-    <Container>
-      <Title>An Insight into My Life</Title>
-      <ButtonContainer>
-        <Button onClick={() => window.open("Lebenslauf.pdf", "_blank")}>
-          My CV
-        </Button>
-      </ButtonContainer>
-
-      <Section>
-        <SectionTitle>About Me</SectionTitle>
+    <Wrapper>
+      <Container>
         <Paragraph>
-          Hello! My name is Oliver Spörl. I am a dedicated and dynamic MERN
-          Stack developer with a passion for developing scalable full-stack web
-          applications. Here, I want to give you a little insight into my
-          journey that has made me the man I am today.
+          On June 6th, 2023, I embarked on a journey to become a Web and Software Developer at DCI. After 14 months of coding, debugging, and probably way too much coffee, I proudly graduated on August 8th, 2024.
         </Paragraph>
-      </Section>
-
-      <Section>
-        <SectionTitle>My Journey</SectionTitle>
-
-        <Section>
-          <SectionTitle>Early Career</SectionTitle>
-          <Paragraph>
-            My professional career began in a completely different field. After
-            my training as a bakery sales assistant at Scherer Trostberg
-            (09.2011 - 05.2014), I held various positions, including bakery
-            sales assistant at Gerweck and hotel specialist with the Zordel
-            family. These experiences have provided me with essential skills
-            such as customer service, teamwork, and perseverance.
-          </Paragraph>
-        </Section>
-        <Section>
-          <SectionTitle>Transition to Technology</SectionTitle>
-          <Paragraph>
-            My interest in technology grew steadily, and I decided to take new
-            paths. In April 2017, I started as a call center agent at Stadtwerke
-            Pforzheim and later as a field service representative at Telekom.
-            These positions further enhanced my interest in technology and
-            communication.
-          </Paragraph>
-        </Section>
-        <Section>
-          <SectionTitle>The Step into Web Development</SectionTitle>
-          <Paragraph>
-            In June 2023, I began my home-schooling to become a web developer at
-            DCI. This step was the beginning of an exciting journey. The
-            fascination for programming quickly captivated me. From simple games
-            with JavaScript to landing pages to complex programs with Python – I
-            continually discover new challenges and opportunities.
-          </Paragraph>
-        </Section>
-        <Section>
-          <SectionTitle>Completion and Future Plans</SectionTitle>
-          <Paragraph>
-            On August 8, 2024, I will officially complete my training as a web
-            developer. From that point on, I am looking for a position where I
-            can further develop and apply my skills. My goal is to develop
-            innovative solutions that make life easier and more enriching.
-          </Paragraph>
-        </Section>
-      </Section>
-
-      <Section>
-        <SectionTitle>Philosophy and Values</SectionTitle>
         <Paragraph>
-          I firmly believe that with enough will and fun at work, there are no
-          problems, only solutions. What may seem difficult at first becomes a
-          fulfilling challenge through perseverance and passion. A quote that
-          particularly inspires me is: "Problems are only opportunities in
-          disguise."
+          Since then, I've been diving headfirst into the world of Artificial Intelligence, earning some fancy certificates to prove it.
         </Paragraph>
-      </Section>
-
-      <Section>
-        <SectionTitle>Vision and Goals</SectionTitle>
         <Paragraph>
-          My vision is to continue growing in web development and to master new
-          challenges continuously. In the long term, I aim to develop innovative
-          solutions that make people's lives easier and more enriching.
+          Not one to sit still, I then ventured into the mysterious realm of Kali Linux and its ecosystem—no, I didn't become a hacker, but I did learn a thing or two!
         </Paragraph>
-      </Section>
-
-      <Section>
-        <SectionTitle>Personal Reflection</SectionTitle>
-        <Section>
-          <SectionTitle>Lessons Learned</SectionTitle>
-          <Paragraph>
-            Continuous learning and the willingness to take on new challenges
-            are key to success in web development.
-          </Paragraph>
-        </Section>
-        <Section>
-          <SectionTitle>Advice</SectionTitle>
-          <Paragraph>
-            For those looking to find their own path: Stay curious and never
-            lose the fun in what you do.
-          </Paragraph>
-        </Section>
-      </Section>
-
-      <Section>
-        <SectionTitle>Conclusion</SectionTitle>
         <Paragraph>
-          I hope you enjoyed this insight into my journey. If you want to learn
-          more about my work or are interested in collaboration, don't hesitate
-          to contact me!
+          Currently, I'm leveling up my IT security skills with an eye on becoming a Junior Pen Tester in the near future.
         </Paragraph>
-      </Section>
-    </Container>
+        <Paragraph>
+          Oh, and in case you were wondering, I'm still coding away as a freelance web developer, because, why not?
+        </Paragraph>
+      </Container>
+    </Wrapper>
   );
 }
 
