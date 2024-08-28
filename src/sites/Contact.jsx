@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // EmailJS initialisieren
-emailjs.init("GufY9EpHnUDgkqjIy");
+emailjs.init("5Xf6olqGoZ0OD6sTL");
 
 // Keyframes für Animationen
 const fadeIn = keyframes`
@@ -169,7 +169,7 @@ function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_0k2kjag', 'template_n8i038q', e.target)
+    emailjs.sendForm('service_cwyllnt', 'template_i1cmrix', e.target)
       .then((result) => {
         console.log('SUCCESS!', result.text);
         toast.success('Email sent successfully.');
