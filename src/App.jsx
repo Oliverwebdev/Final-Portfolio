@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled, { createGlobalStyle, keyframes } from 'styled-components';
 import Aboutme from './sites/Aboutme';
 import Projects from './sites/Projects';
 import MyWay from './sites/MyWay';
@@ -10,6 +10,15 @@ import SkillTree from './sites/SkillTree';
 import Achievements from './sites/Achievements';
 import Footer from './components/Footer';
 import skills from './assets/skills.json';
+
+// Global Styles
+const GlobalStyle = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+`;
 
 // Keyframe animation for gradient movement
 const gradientAnimation = keyframes`
@@ -87,23 +96,26 @@ function App() {
   }, []);
 
   return (
-    <AppContainer>
-      {icons}
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Navigate to="/about-me" />} />
-          <Route path="/about-me" element={<Aboutme />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/my-way" element={<MyWay />} />
-          <Route path='/achievements' element={<Achievements />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path='/skilltree' element={<SkillTree />} />
-          <Route path="*" element={<Navigate to="/about-me" />} />
-        </Routes>
-      </Router>
-      <Footer />
-    </AppContainer>
+    <>
+      <GlobalStyle />
+      <AppContainer>
+        {icons}
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Navigate to="/about-me" />} />
+            <Route path="/about-me" element={<Aboutme />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/my-way" element={<MyWay />} />
+            <Route path='/achievements' element={<Achievements />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path='/skilltree' element={<SkillTree />} />
+            <Route path="*" element={<Navigate to="/about-me" />} />
+          </Routes>
+        </Router>
+        <Footer />
+      </AppContainer>
+    </>
   );
 }
 
