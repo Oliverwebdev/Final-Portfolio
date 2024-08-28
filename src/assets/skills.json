@@ -16,7 +16,9 @@
   "Backend": [
     { "name": "MongoDB", "icon": "fab fa-envira", "color": "#4DB33D" },
     { "name": "Node.js", "icon": "fab fa-node-js", "color": "#68A063" },
-    { "name": "Socket.io", "icon": "fas fa-bolt", "color": "#010101" }
+    { "name": "Socket.io", "icon": "fas fa-bolt", "color": "#010101" },
+    { "name": "Python", "icon": "fab fa-python", "color": "#306998" },
+    { "name": "Django", "icon": "fas fa-leaf", "color": "#092E20" }
   ],
   "Other": [
     { "name": "VS Code", "icon": "fas fa-code", "color": "#007ACC" },
@@ -25,11 +27,14 @@
     { "name": "Ubuntu", "icon": "fab fa-ubuntu", "color": "#E95420" },
     { "name": "Windows", "icon": "fab fa-windows", "color": "#00ADEF" },
     { "name": "Netlify", "icon": "fas fa-cloud-upload-alt", "color": "#00C7B7" },
-    { "name": "Render", "icon": "fas fa-server", "color": "#FA005E" }
+    { "name": "Render", "icon": "fas fa-server", "color": "#FA005E" },
+    { "name": "Kali Linux", "icon": "fab fa-linux", "color": "#557C94" },
+    { "name": "Basics AI by IBM", "icon": "fas fa-robot", "color": "#FF9900" }
+
   ],
   "Next Goals": [
-    { "name": "Python", "icon": "fab fa-python", "color": "#306998" },
-    { "name": "Django", "icon": "fas fa-leaf", "color": "#092E20" },
-    { "name": "Basics AI", "icon": "fas fa-robot", "color": "#FF9900" }
+    { "name": "Basics IT Security", "icon": "fas fa-shield-alt", "color": "#FF6F61" },
+    { "name": "Basics for Defending", "icon": "fas fa-shield-alt", "color": "#009688" },
+    { "name": "Basics for Attacking", "icon": "fas fa-skull", "color": "#F44336" }
   ]
 }
