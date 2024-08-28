@@ -32,9 +32,11 @@ const Nav = styled.nav`
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  display: flex;
+  justify-content: center; /* Horizontale Zentrierung */
+  align-items: center; /* Vertikale Zentrierung */
 
   @media (max-width: 768px) {
-    display: flex;
     justify-content: space-between;
     align-items: center;
   }
@@ -44,6 +46,7 @@ const Ul = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-around;
+  align-items: center; /* Vertikale Zentrierung */
   margin: 0;
   padding: 0;
   animation: ${fadeIn} 0.5s ease-in-out;
@@ -160,7 +163,6 @@ function NavBar() {
         <Line $isOpen={isOpen} />
       </Burger>
       <Ul $isOpen={isOpen}>
-        
         <Li
           onMouseEnter={() => setHoveredIndex(0)}
           onMouseLeave={() => setHoveredIndex(null)}
