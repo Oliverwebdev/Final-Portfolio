@@ -2,6 +2,17 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import skills from '../assets/skills.json';
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const brainPulse = keyframes`
   0% {
     box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
@@ -19,13 +30,18 @@ const SkillTreeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #121212, #1f1f1f);
   min-height: 100vh;
   color: #ffffff;
   box-sizing: border-box;
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
+  perspective: 1000px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 `;
 
 const Section = styled.div`
@@ -34,18 +50,27 @@ const Section = styled.div`
   margin: 20px 0;
   padding: 0 20px;
   box-sizing: border-box;
+  opacity: 0;
+  animation: ${fadeIn} 0.6s ease-out forwards;
+
+  &:nth-child(1) { animation-delay: 0.2s; }
+  &:nth-child(2) { animation-delay: 0.4s; }
+  &:nth-child(3) { animation-delay: 0.6s; }
+  &:nth-child(4) { animation-delay: 0.8s; }
 `;
 
 const SectionTitle = styled.h2`
   margin-bottom: 20px;
   font-size: 2em;
   text-align: center;
-  border-bottom: 2px solid #00aaff;
-  padding-bottom: 10px;
-  color: #00aaff;
+  background: linear-gradient(90deg, #007cf0, #00abff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform-style: preserve-3d;
+  transform: translateZ(20px);
 
   @media (max-width: 480px) {
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
 `;
 
@@ -73,9 +98,10 @@ const Icon = styled.div`
   align-items: center;
   animation: ${brainPulse} 5s infinite ease-in-out;
   transition: transform 0.3s;
+  transform-style: preserve-3d;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateZ(20px);
   }
 
   @media (max-width: 480px) {
@@ -95,6 +121,12 @@ const IconImage = styled.i`
   font-size: 40px;
   color: ${props => props.color};
   text-shadow: 0 0 10px ${props => props.color};
+  transition: color 0.3s, text-shadow 0.3s;
+
+  &:hover {
+    color: white;
+    text-shadow: 0 0 20px ${props => props.color};
+  }
 
   @media (max-width: 480px) {
     font-size: 30px;

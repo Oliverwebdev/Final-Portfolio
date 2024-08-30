@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled, { keyframes, css } from "styled-components";
-import Image from '../assets/HeroImage.jpg'; // Importiere das Bild
+import Image from '../assets/HeroImage.jpg';
 
-// Keyframes für Animationen
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -18,23 +17,36 @@ const fadeIn = keyframes`
 const rotateIn = keyframes`
   from {
     opacity: 0;
-    transform: rotate(-180deg);
+    transform: rotateY(-90deg);
   }
   to {
     opacity: 1;
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
+  }
+`;
+
+const pulse = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 `;
 
 const Nav = styled.nav`
-  background-color: #333;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
   padding: 1rem;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   z-index: 1000;
   display: flex;
-  justify-content: center; /* Horizontale Zentrierung */
-  align-items: center; /* Vertikale Zentrierung */
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
 
   @media (max-width: 768px) {
     justify-content: space-between;
@@ -46,7 +58,7 @@ const Ul = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-around;
-  align-items: center; /* Vertikale Zentrierung */
+  align-items: center;
   margin: 0;
   padding: 0;
   animation: ${fadeIn} 0.5s ease-in-out;
@@ -56,10 +68,10 @@ const Ul = styled.ul`
     align-items: center;
     display: ${(props) => (props.$isOpen ? "flex" : "none")};
     position: absolute;
-    top: 3.5rem;
+    top: 100%;
     left: 0;
     right: 0;
-    background-color: #333;
+    background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
     padding: 1rem 0;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -69,30 +81,44 @@ const Ul = styled.ul`
 const Li = styled.li`
   margin: 0 1rem;
   position: relative;
+  transform-style: preserve-3d;
   animation: ${rotateIn} 0.5s ease-in-out;
+  animation-fill-mode: backwards;
+
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+  &:nth-child(5) { animation-delay: 0.5s; }
 
   &:after {
     content: "";
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 2px;
-    display: block;
-    margin-top: 5px;
-    right: 0;
-    background: #007bff;
-    transition: width 0.4s ease;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, transparent, #007bff, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    transform-origin: center;
+    opacity: 0.7;
+  }
 
-    ${(props) =>
-      props.$isHovered &&
-      css`
-        width: 100%;
-        left: 0;
-        background: #00ff00;
-      `}
+  &:hover::after {
+    transform: scaleX(1);
   }
 
   @media (max-width: 768px) {
     margin: 1rem 0;
+    opacity: 0;
+    animation: ${fadeIn} 0.5s ease-in-out forwards;
+    
+    &:nth-child(1) { animation-delay: 0.1s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.3s; }
+    &:nth-child(4) { animation-delay: 0.4s; }
+    &:nth-child(5) { animation-delay: 0.5s; }
   }
 `;
 
@@ -102,9 +128,10 @@ const StyledLink = styled(Link)`
   font-size: 1.2rem;
   font-family: "Roboto", sans-serif;
   position: relative;
-
+  transition: color 0.3s;
+  
   &:hover {
-    text-decoration: underline;
+    color: #007bff;
   }
 `;
 
@@ -115,9 +142,8 @@ const Burger = styled.div`
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    position: absolute;
-    right: 1rem;
-    z-index: 1001; /* Ensure it's above other elements */
+    position: relative;
+    z-index: 1001;
   }
 `;
 
@@ -127,6 +153,7 @@ const Line = styled.div`
   background-color: white;
   margin: 3px 0;
   transition: 0.4s;
+  border-radius: 3px;
 
   ${(props) =>
     props.$isOpen &&
@@ -143,9 +170,28 @@ const Line = styled.div`
     `}
 `;
 
+const ProfileLink = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+  animation: ${pulse} 2s ease-in-out infinite;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const ProfileImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -163,58 +209,36 @@ function NavBar() {
         <Line $isOpen={isOpen} />
       </Burger>
       <Ul $isOpen={isOpen}>
-        <Li
-          onMouseEnter={() => setHoveredIndex(0)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 0}
-        >
+        <Li>
           <StyledLink to="/skilltree" onClick={closeMenu}>
             Skill Tree
           </StyledLink>
         </Li>
-        <Li
-          onMouseEnter={() => setHoveredIndex(1)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 1}
-        >
+        <Li>
           <StyledLink to="/my-way" onClick={closeMenu}>
             My Journey
           </StyledLink>
         </Li>
-        <Li
-          onMouseEnter={() => setHoveredIndex(2)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 2}
-        >
+        <Li>
           <StyledLink to="/projects" onClick={closeMenu}>
             Projects
           </StyledLink>
         </Li>
-        <Li
-          onMouseEnter={() => setHoveredIndex(3)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 3}
-        >
+        <Li>
           <StyledLink to="/achievements" onClick={closeMenu}>
             Achievements
           </StyledLink>
         </Li>
-        <Li
-          onMouseEnter={() => setHoveredIndex(4)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 4}
-        >
+        <Li>
           <StyledLink to="/contact" onClick={closeMenu}>
             Contact
           </StyledLink>
         </Li>
-        <Li
-          onMouseEnter={() => setHoveredIndex(5)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          $isHovered={hoveredIndex === 5}
-        >
+        <Li>
           <StyledLink to="/about-me" onClick={closeMenu}>
-            <img src={Image} alt="About Me" style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+            <ProfileLink>
+              <ProfileImage src={Image} alt="About Me" />
+            </ProfileLink>
           </StyledLink>
         </Li>
       </Ul>

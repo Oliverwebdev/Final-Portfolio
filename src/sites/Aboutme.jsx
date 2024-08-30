@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok, faLinkedin, faGithub, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import Image from '../assets/HeroImage.jpg';
 
-// Keyframes für Animationen
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -16,48 +15,33 @@ const fadeIn = keyframes`
   }
 `;
 
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-`;
-
-const glow = keyframes`
-  0% {
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(0, 123, 255, 1);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-`;
-
-const slideIn = keyframes`
+const typing = keyframes`
   from {
-    transform: translateX(-100%);
+    width: 0;
   }
   to {
-    transform: translateX(0);
+    width: 100%;
   }
 `;
 
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
+const blink = keyframes`
+  from, to {
+    border-color: transparent;
   }
-  40% {
-    transform: translateY(-30px);
+  50% {
+    border-color: #00FF00;
   }
-  60% {
-    transform: translateY(-15px);
+`;
+
+const gradient = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 `;
 
@@ -66,110 +50,134 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
   padding: 2rem;
-  background-color: #1E1E1E;
+  background: linear-gradient(-45deg, #1E1E1E, #2C2C2C, #1E1E1E, #2C2C2C);
+  background-size: 400% 400%;
+  animation: ${gradient} 15s ease infinite;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  max-width: 600px;
-  margin: 2rem auto;
-  text-align: center;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   animation: ${fadeIn} 1s ease-out;
 `;
 
 const ProfileImage = styled.img`
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  margin-bottom: 1rem;
-  border: 2px solid #333;
-  animation: ${pulse} 2s infinite;
+  object-fit: cover;
+  border: 5px solid #333;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
-const Name = styled.h1`
-  font-size: 2.5rem;
-  color: #E0E0E0;
-  margin: 0.5rem 0;
-  animation: ${fadeIn} 1.5s ease-out;
+const Heading = styled.h1`
+  font-size: 3rem;
+  color: #fff;
+  margin: 1rem 0;
+  overflow: hidden;
+  border-right: .15em solid #00FF00;
+  white-space: nowrap;
+  animation: 
+    ${typing} 3.5s steps(40, end),
+    ${blink} .75s step-end infinite;
 `;
 
-const Role = styled.h2`
+const Role = styled.div`
   font-size: 1.5rem;
-  color: #007BFF;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  animation: ${slideIn} 1s ease-out, ${bounce} 2s infinite;
-  &:hover {
-    animation: ${glow} 1.5s infinite alternate, ${bounce} 1s;
-  }
+  color: #fff;
+  margin-bottom: 1.5rem;
+  animation: ${fadeIn} 2s ease-out;
 `;
 
-const ModeSwitcher = styled.span`
-  color: #00FF00;
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline;
-  }
+const Description = styled.p`
+  font-size: 1.2rem;
+  color: #ddd;
+  text-align: center;
+  line-height: 1.8;
+  animation: ${fadeIn} 2.5s ease-out;
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 1.5rem;
-  animation: ${fadeIn} 2.5s ease-out;
 `;
 
 const SocialLink = styled.a`
-  color: #E0E0E0;
+  color: #fff;
   margin: 0 1rem;
-  font-size: 1.5rem;
-  transition: color 0.3s ease;
+  font-size: 2rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  animation: ${fadeIn} 3s ease-out;
+  
   &:hover {
-    color: #007BFF;
-    animation: ${pulse} 1s;
+    color: #00FF00;
+    transform: scale(1.2);
   }
 `;
 
 function Aboutme() {
-  const modes = ['Full Stack', 'Frontend', 'Backend'];
-  const [modeIndex, setModeIndex] = useState(0);
-
-  const toggleMode = () => {
-    setModeIndex((prevIndex) => (prevIndex + 1) % modes.length);
-  };
+  const [role, setRole] = useState('');
+  const roles = [
+    'Full Stack Web Developer',
+    'Frontend Enthusiast',
+    'Backend Wizard',
+    'JavaScript Lover',
+    'React Master',
+    'Node.js Ninja'
+  ];
+  let roleIndex = 0;
 
   useEffect(() => {
-    const interval = setInterval(toggleMode, 2000);
+    const interval = setInterval(() => {
+      setRole(roles[roleIndex]);
+      roleIndex = (roleIndex + 1) % roles.length;
+    }, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
   return (
     <Container>
-      <ProfileImage src={Image} alt="Profile" />
-      <Name>Hi, I'm <span>Oliver Spörl</span></Name>
-      <Role onClick={toggleMode}>
-        I'm a{' '}
-        <ModeSwitcher onClick={toggleMode}>
-          {modes[modeIndex]}
-        </ModeSwitcher>{' '}
-        Web Developer
-      </Role>
-      <SocialLinks>
-        <SocialLink href="https://www.tiktok.com/@der_gamer_olli?_t=8beBhKAadgI&_r=1" target="_blank" aria-label="TikTok 1">
-          <FontAwesomeIcon icon={faTiktok} />
-        </SocialLink>
-
-        <SocialLink href="https://www.linkedin.com/in/oliver-sp%C3%B6rl-2586a52b3/" target="_blank" aria-label="LinkedIn">
-          <FontAwesomeIcon icon={faLinkedin} />
-        </SocialLink>
-
-        <SocialLink href="https://github.com/Oliverwebdev" target="_blank" aria-label="GitHub">
-          <FontAwesomeIcon icon={faGithub} />
-        </SocialLink>
-
-        <SocialLink href="https://www.tiktok.com/@gringenerator?_t=8hQxyz4bOW8&_r=1" target="_blank" aria-label="TikTok 2">
-          <FontAwesomeIcon icon={faTiktok} />
-        </SocialLink>
-      </SocialLinks>
+      <Content>
+        <ProfileImage src={Image} alt="Oliver Spörl" />
+        <Heading>Hi, I'm Oliver Spörl</Heading>
+        <Role>I'm a passionate {role}</Role>
+        <Description>
+          I'm a dedicated web developer who loves creating amazing digital experiences. 
+          With a keen eye for detail and a passion for cutting-edge technologies, I strive to build web applications that are not only beautiful but also highly performant and user-friendly.
+          Join me on this exciting journey as we explore the limitless possibilities of web development together!
+        </Description>
+        <SocialLinks>
+          <SocialLink href="https://www.tiktok.com/@der_gamer_olli" target="_blank" aria-label="TikTok 1">
+            <FontAwesomeIcon icon={faTiktok} />
+          </SocialLink>
+          <SocialLink href="https://www.linkedin.com/in/oliver-spörl-2586a52b3/" target="_blank" aria-label="LinkedIn">
+            <FontAwesomeIcon icon={faLinkedin} />
+          </SocialLink>
+          <SocialLink href="https://github.com/Oliverwebdev" target="_blank" aria-label="GitHub">
+            <FontAwesomeIcon icon={faGithub} />
+          </SocialLink>
+          <SocialLink href="https://www.tiktok.com/@gringenerator" target="_blank" aria-label="TikTok 2">
+            <FontAwesomeIcon icon={faTiktok} />
+          </SocialLink>
+        </SocialLinks>
+      </Content>
     </Container>
   );
 }
