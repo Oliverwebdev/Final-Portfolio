@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { useState, useEffect, useRef } from "react";
+import styled, { keyframes, css } from "styled-components";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import "@react-pdf-viewer/default-layout/lib/styles/index.css";
@@ -7,160 +7,237 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 const certificates = [
   {
     id: 1,
-    title: "Achievements 1",
-    description: "Certificate as a web and software developer",
+    title: "Web and Software Developer",
+    description: "Mastered full-stack development principles and practices",
     date: "14.06.2024",
     pdf: "/Vorläufiges-Zertifikat.pdf",
   },
   {
-    id: 1,
-    title: "Achievements 2",
-    description: "Introduction to Software Engineering",
+    id: 2,
+    title: "Software Engineering Foundations",
+    description: "Gained a solid understanding of software engineering concepts and methodologies",
     date: "02.07.2024",
     pdf: "/Coursera 6V7CLQ686LGP.pdf",
   },
   {
-    id: 1,
-    title: "Achievements 3",
-    description: "Introduction to Artificial Intelligence (AI)",
+    id: 3,
+    title: "AI Fundamentals",
+    description: "Explored the core principles and applications of Artificial Intelligence",
     date: "03.07.2024",
     pdf: "/Coursera X49UAMWZXK2Q.pdf",
   },
-
   {
-    id: 1,
-    title: "Achievements 4",
-    description: "Introduction to HTML, CSS, & JavaScript",
+    id: 4,
+    title: "Web Development Essentials",
+    description: "Honed skills in HTML, CSS, and JavaScript for modern web development",
     date: "04.07.2024",
     pdf: "/Coursera KRYFFV2YQQJG.pdf",
   },
   {
-    id: 1,
-    title: "Achievements 5",
-    description: "Generative AI: Pormpt Engineering Basics",
+    id: 5,
+    title: "Generative AI: Prompt Engineering",
+    description: "Learned advanced techniques in crafting effective prompts for AI systems",
     date: "05.07.2024",
     pdf: "/Coursera TBMWQKYS2UJD.pdf",
   },
   {
-    id: 1,
-    title: "Achievements 6",
-    description: "Generative AI: Introduction and Applications",
+    id: 6,
+    title: "Generative AI Applications",
+    description: "Explored practical applications and implementation of Generative AI technologies",
     date: "06.07.2024",
     pdf: "/Coursera U3W2BURF3WTF.pdf",
   },
-
-  // Füge hier weitere Zertifikate hinzu
 ];
 
-const fadeIn = keyframes`
+const pulseGlow = keyframes`
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.5); }
+`;
+
+const floatAnimation = keyframes`
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+`;
+
+const appearAnimation = keyframes`
   from {
     opacity: 0;
+    transform: translateY(20px) scale(0.9);
   }
   to {
     opacity: 1;
-  }
-`;
-
-const hoverEffect = keyframes`
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    transform: translateY(0) scale(1);
   }
 `;
 
 const Container = styled.div`
-  padding: 20px;
-  background-color: #121212;
-  color: #fff;
-  font-family: "Arial", sans-serif;
-  animation: ${fadeIn} 1s ease-in-out;
+  background: linear-gradient(135deg, #0a0a2e 0%, #1a1a3a 100%);
+  min-height: 100vh;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
+  font-size: 3rem;
+  color: #00ffff;
   text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  color: #00d4ff;
-  text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  animation: ${floatAnimation} 6s ease-in-out infinite;
 
-  @media (max-width: 600px) {
-    font-size: 2em;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
   }
 `;
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
+const Timeline = styled.div`
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 0;
+`;
 
-  @media (max-width: 400px) {
-    grid-template-columns: 1fr;
+const TimelinePath = styled.div`
+  position: absolute;
+  width: 6px;
+  background: #333;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+  border-radius: 3px;
+
+  @media (max-width: 768px) {
+    left: 31px;
   }
 `;
 
-const Card = styled.div`
-  background: linear-gradient(145deg, #1e1e1e, #2e2e2e);
+const TimelineProgress = styled.div`
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(180deg, #00ffff, #ff00ff);
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  transition: height 0.05s linear;
+`;
+
+const MilestoneContainer = styled.div`
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: calc(50% - 80px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+
+  ${props => props.isVisible && css`
+    opacity: 1;
+    transform: translateY(0);
+    animation: ${appearAnimation} 0.5s ease-out;
+  `}
+
+  ${props => props.position === 'left' ? css`
+    left: 0;
+  ` : css`
+    left: 50%;
+  `}
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #00ffff;
+    border: 4px solid #ff00ff;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    animation: ${pulseGlow} 2s infinite;
+  }
+
+  ${props => props.position === 'left' ? css`
+    &::after {
+      right: -16px; // Adjusted to align with the center line
+    }
+  ` : css`
+    &::after {
+      left: -13px; // Adjusted to align with the center line
+    }
+    padding-left: 30px; // Reduced left padding for right-side content
+  `}
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+    left: 0;
+
+    &::after {
+      left: 15px;
+    }
+  }
+`;
+
+const MilestoneContent = styled.div`
   padding: 20px;
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: ${hoverEffect} 5s infinite;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
   }
 `;
 
-const CardTitle = styled.h3`
-  font-size: 1.7em;
+const MilestoneTitle = styled.h2`
+  color: #00ffff;
+  font-size: 1.5rem;
   margin-bottom: 10px;
-  color: #ff007f;
-
-  @media (max-width: 600px) {
-    font-size: 1.4em;
-  }
 `;
 
-const CardDescription = styled.p`
-  font-size: 1.1em;
-  margin-bottom: 10px;
-  color: #d1d1d1;
-
-  @media (max-width: 600px) {
-    font-size: 1em;
-  }
+const MilestoneDescription = styled.p`
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.5;
 `;
 
-const CardDate = styled.p`
-  font-size: 0.9em;
-  color: #888;
-
-  @media (max-width: 600px) {
-    font-size: 0.8em;
-  }
-`;
-
-const PdfPreview = styled.div`
+const MilestoneDate = styled.div`
+  color: #ff00ff;
+  font-size: 0.9rem;
+  font-weight: bold;
   margin-top: 10px;
-  height: 200px;
-  overflow: hidden;
-  cursor: pointer;
+`;
 
-  canvas {
-    height: 100%;
+const ViewCertificateButton = styled.button`
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+  font-weight: bold;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 0, 255, 0.4);
   }
 `;
 
 const Modal = styled.div`
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -168,35 +245,82 @@ const Modal = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8);
-  padding-top: 60px;
+  background-color: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalContent = styled.div`
-  background-color: #fefefe;
-  margin: 5% auto;
+  background-color: #fff;
+  margin: auto;
   padding: 20px;
-  border: 1px solid #888;
+  border-radius: 15px;
   width: 80%;
-  max-width: 1200px;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow: auto;
+  position: relative;
 `;
 
 const CloseButton = styled.span`
   color: #aaa;
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 20px;
   font-size: 28px;
   font-weight: bold;
+  cursor: pointer;
 
   &:hover,
   &:focus {
     color: #000;
     text-decoration: none;
-    cursor: pointer;
   }
 `;
 
 function Achievements() {
   const [selectedPdf, setSelectedPdf] = useState(null);
+  const [visibleMilestones, setVisibleMilestones] = useState({});
+  const [progressHeight, setProgressHeight] = useState(0);
+  const milestoneRefs = useRef([]);
+  const timelineRef = useRef(null);
+
+  const updateMilestoneVisibility = (progress) => {
+    if (timelineRef.current) {
+      const timelineHeight = timelineRef.current.offsetHeight;
+      milestoneRefs.current.forEach((ref, index) => {
+        if (ref) {
+          const milestoneTop = ref.offsetTop - timelineRef.current.offsetTop;
+          const milestoneHeight = ref.offsetHeight;
+          const milestoneCenter = milestoneTop + milestoneHeight / 2;
+          const milestoneProgress = (milestoneCenter / timelineHeight) * 100;
+
+          setVisibleMilestones(prev => ({
+            ...prev,
+            [index]: progress >= milestoneProgress - 5 // Show slightly before reaching the center
+          }));
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (timelineRef.current) {
+        const { top, height } = timelineRef.current.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const visibleHeight = Math.max(0, Math.min(viewportHeight - top, height));
+        const progress = (visibleHeight / height) * 100;
+        const newProgressHeight = Math.max(0, Math.min(progress, 100));
+        setProgressHeight(newProgressHeight);
+        updateMilestoneVisibility(newProgressHeight);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call to set initial state
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const openModal = (pdf) => {
     setSelectedPdf(pdf);
@@ -208,30 +332,35 @@ function Achievements() {
 
   return (
     <Container>
-      <Title>My Achievements</Title>
-      <Grid>
-        {certificates.map((cert) => (
-          <Card key={cert.id}>
-            <CardTitle>{cert.title}</CardTitle>
-            <CardDescription>{cert.description}</CardDescription>
-            <CardDate>{cert.date}</CardDate>
-            <PdfPreview onClick={() => openModal(cert.pdf)}>
-              <Worker
-                workerUrl={`//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`}
-              >
-                <Viewer fileUrl={cert.pdf} />
-              </Worker>
-            </PdfPreview>
-          </Card>
+      <Title>Journey of Achievements</Title>
+      <Timeline ref={timelineRef}>
+        <TimelinePath>
+          <TimelineProgress style={{ height: `${progressHeight}%` }} />
+        </TimelinePath>
+        {certificates.map((cert, index) => (
+          <MilestoneContainer
+            key={cert.id}
+            position={index % 2 === 0 ? 'left' : 'right'}
+            ref={(el) => (milestoneRefs.current[index] = el)}
+            data-id={index}
+            isVisible={visibleMilestones[index]}
+          >
+            <MilestoneContent>
+              <MilestoneTitle>{cert.title}</MilestoneTitle>
+              <MilestoneDescription>{cert.description}</MilestoneDescription>
+              <MilestoneDate>{cert.date}</MilestoneDate>
+              <ViewCertificateButton onClick={() => openModal(cert.pdf)}>
+                View Certificate
+              </ViewCertificateButton>
+            </MilestoneContent>
+          </MilestoneContainer>
         ))}
-      </Grid>
+      </Timeline>
       {selectedPdf && (
         <Modal isOpen={!!selectedPdf}>
           <ModalContent>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
-            <Worker
-              workerUrl={`//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`}
-            >
+            <Worker workerUrl={`//cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js`}>
               <Viewer fileUrl={selectedPdf} />
             </Worker>
           </ModalContent>
