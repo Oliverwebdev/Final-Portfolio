@@ -1,9 +1,20 @@
+// Aboutme.jsx
+
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTiktok, faLinkedin, faGithub, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faTiktok, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 import Image from '../assets/HeroImage.jpg';
 
+// Animationen für die verschiedenen Jahreszeiten:
+import SnowfallEffect from '../components/background/SnowfallEffect';
+import BlossomEffect from '../components/background/BlossomEffect';
+import FirefliesEffect from '../components/background/FirefliesEffect';
+import LeavesEffect from '../components/background/LeavesEffect';
+
+/* ----------------------------------
+   1) Keyframes wie gehabt
+---------------------------------- */
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -45,6 +56,41 @@ const gradient = keyframes`
   }
 `;
 
+/* ----------------------------------
+   2) Jahreszeit ermitteln
+---------------------------------- */
+function getSeason() {
+  const month = new Date().getMonth(); // 0=Jan, 1=Feb, ..., 11=Dez
+  // const month = 6; // Test mit Dezember
+
+  if (month === 11 || month === 0 || month === 1) {
+    // Dezember, Januar, Februar
+    return 'winter';
+  } else if (month >= 2 && month <= 4) {
+    // März, April, Mai
+    return 'spring';
+  } else if (month >= 5 && month <= 7) {
+    // Juni, Juli, August
+    return 'summer';
+  } else {
+    // September, Oktober, November
+    return 'autumn';
+  }
+}
+
+/* ----------------------------------
+   3) Verschiedene Hintergründe
+---------------------------------- */
+const seasonBackgrounds = {
+  winter: 'linear-gradient(-45deg, #2c3e50, #005c9f, #2c3e50, #3498db)',
+  spring: 'linear-gradient(-45deg, #9ee37d, #39d98a, #c9f8c3, #2c2c2c)',
+  summer: 'linear-gradient(-45deg, #f5a623, #ffe600, #f7b733, #fd746c)',
+  autumn: 'linear-gradient(-45deg, #f56f3a, #8f3f1f, #f8ad9d, #2c2c2c)',
+};
+
+/* ----------------------------------
+   4) Container mit dynamischem BG
+---------------------------------- */
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -52,14 +98,19 @@ const Container = styled.div`
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
-  background: linear-gradient(-45deg, #1E1E1E, #2C2C2C, #1E1E1E, #2C2C2C);
+
+  /* Dynamischer Hintergrund basierend auf Season */
+  background: ${(props) => props.background};
   background-size: 400% 400%;
   animation: ${gradient} 15s ease infinite;
 `;
 
+/* ----------------------------------
+   5) Weitere Styles
+---------------------------------- */
 const Content = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   align-items: center;
   max-width: 800px;
   padding: 2rem;
@@ -131,16 +182,21 @@ const SocialLink = styled.a`
   }
 `;
 
+/* ----------------------------------
+   6) Hauptkomponente
+---------------------------------- */
 function Aboutme() {
   const [role, setRole] = useState('');
+
   const roles = [
     'Full Stack Web Developer',
     'Frontend Enthusiast',
     'Backend Wizard',
     'JavaScript Lover',
     'React Master',
-    'Node.js Ninja'
+    'Node.js Ninja',
   ];
+  
   let roleIndex = 0;
 
   useEffect(() => {
@@ -152,8 +208,17 @@ function Aboutme() {
     return () => clearInterval(interval);
   }, []);
 
+  // 6.1) Ermittel die aktuelle Season
+  const season = getSeason();
+
   return (
-    <Container>
+    <Container background={seasonBackgrounds[season]}>
+      {/* Saisonale Animationen */}
+      {season === 'winter' && <SnowfallEffect />}
+      {season === 'spring' && <BlossomEffect />}
+      {season === 'summer' && <FirefliesEffect />}
+      {season === 'autumn' && <LeavesEffect />}
+
       <Content>
         <ProfileImage src={Image} alt="Oliver Spörl" />
         <Heading>Hi, I'm Oliver Spörl</Heading>
@@ -164,16 +229,32 @@ function Aboutme() {
           Join me on this exciting journey as we explore the limitless possibilities of web development together!
         </Description>
         <SocialLinks>
-          <SocialLink href="https://www.tiktok.com/@der_gamer_olli" target="_blank" aria-label="TikTok 1">
+          <SocialLink
+            href="https://www.tiktok.com/@der_gamer_olli"
+            target="_blank"
+            aria-label="TikTok 1"
+          >
             <FontAwesomeIcon icon={faTiktok} />
           </SocialLink>
-          <SocialLink href="https://www.linkedin.com/in/oliver-spörl-2586a52b3/" target="_blank" aria-label="LinkedIn">
+          <SocialLink
+            href="https://www.linkedin.com/in/oliver-spörl-2586a52b3/"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
             <FontAwesomeIcon icon={faLinkedin} />
           </SocialLink>
-          <SocialLink href="https://github.com/Oliverwebdev" target="_blank" aria-label="GitHub">
+          <SocialLink
+            href="https://github.com/Oliverwebdev"
+            target="_blank"
+            aria-label="GitHub"
+          >
             <FontAwesomeIcon icon={faGithub} />
           </SocialLink>
-          <SocialLink href="https://www.tiktok.com/@gringenerator" target="_blank" aria-label="TikTok 2">
+          <SocialLink
+            href="https://www.tiktok.com/@gringenerator"
+            target="_blank"
+            aria-label="TikTok 2"
+          >
             <FontAwesomeIcon icon={faTiktok} />
           </SocialLink>
         </SocialLinks>
