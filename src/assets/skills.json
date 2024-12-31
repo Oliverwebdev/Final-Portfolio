@@ -1,4 +1,14 @@
 {
+  "Penetration Testing Tools": [
+    { "name": "Wireshark",   "icon": "fas fa-network-wired",  "color": "#07BEB8" },
+    { "name": "Nmap",        "icon": "fas fa-search-location", "color": "#0D5BA5" },
+    { "name": "Metasploit",  "icon": "fas fa-code-branch",     "color": "#CC9900" },
+    { "name": "Hydra",       "icon": "fas fa-dragon",          "color": "#4CAF50" },
+    { "name": "sqlmap",      "icon": "fas fa-database",        "color": "#E33535" },
+    { "name": "SEToolkit",   "icon": "fas fa-user-secret",     "color": "#333333" },
+    { "name": "aircrack-ng", "icon": "fas fa-wifi",            "color": "#2C3E50" },
+    { "name": "nikto",       "icon": "fas fa-spider",          "color": "#9C27B0" }
+  ],
   "Frontend": [
     { "name": "HTML", "icon": "fab fa-html5", "color": "#E44D26" },
     { "name": "CSS", "icon": "fab fa-css3-alt", "color": "#264DE4" },
@@ -30,11 +40,12 @@
     { "name": "Render", "icon": "fas fa-server", "color": "#FA005E" },
     { "name": "Kali Linux", "icon": "fab fa-linux", "color": "#557C94" },
     { "name": "Basics AI by IBM", "icon": "fas fa-robot", "color": "#FF9900" }
-
   ],
   "Next Goals": [
-    { "name": "Basics IT Security", "icon": "fas fa-shield-alt", "color": "#FF6F61" },
-    { "name": "Basics for Defending", "icon": "fas fa-shield-alt", "color": "#009688" },
-    { "name": "Basics for Attacking", "icon": "fas fa-skull", "color": "#F44336" }
+    {
+      "name": "My next goal: become employed or start my own business.",
+      "icon": "fas fa-briefcase",
+      "color": "#FF6F61"
+    }
   ]
 }
